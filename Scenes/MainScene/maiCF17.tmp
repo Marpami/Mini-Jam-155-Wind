@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbwoij4cre0xe"]
+
+[ext_resource type="PackedScene" uid="uid://cjl3fdqlonmkb" path="res://Modules/Objects/SmallCloud/cloud_piece.tscn" id="1_msuiq"]
+[ext_resource type="Script" path="res://Scenes/MainScene/main_scene.gd" id="1_xxdg2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tr5oy"]
+size = Vector2(629, 365.5)
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_xxdg2")
+
+[node name="CloudPiece" parent="." instance=ExtResource("1_msuiq")]
+position = Vector2(167, 50)
+
+[node name="CloudPiece2" parent="." instance=ExtResource("1_msuiq")]
+position = Vector2(113, 53)
+gravity_scale = 0.3
+
+[node name="CloudPiece3" parent="." instance=ExtResource("1_msuiq")]
+position = Vector2(191, 61)
+
+[node name="CloudPiece4" parent="." instance=ExtResource("1_msuiq")]
+position = Vector2(167, 72)
+
+[node name="WindArea" type="Area2D" parent="."]
+gravity_space_override = 2
+gravity_point_center = Vector2(0, 0)
+gravity_direction = Vector2(0, 0)
+gravity = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WindArea"]
+position = Vector2(267, 173)
+shape = SubResource("RectangleShape2D_tr5oy")
+
+[connection signal="body_entered" from="WindArea" to="." method="_on_area_2d_body_entered"]
